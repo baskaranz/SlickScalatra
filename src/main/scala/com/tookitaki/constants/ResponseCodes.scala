@@ -4,7 +4,7 @@ trait ResponseCodes {
 
   //common failure codes
   val INTERNAL_SYSTEM_ERROR = (5001, "System is experiencing problem. Please try after sometime")
-  val INVALID_INPUT = (5003, "Invalid request, please check the entered parameter")
+  val INVALID_REQUEST_PARAMETER = (5003, "Invalid request, please check the entered parameter")
 
   //products response codes
   val PRODUCTS_RETRIEVED_SUCCESSFULLY = (1000, "Products retrieved successfully")

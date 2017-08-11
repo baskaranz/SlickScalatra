@@ -12,8 +12,16 @@ object ProductsDAO {
     *
     * @return A future value with the list of products List[Pdt]
     */
-  def getAllProducts: Future[List[Pdt]] = Future {
+  def getProducts: Future[List[Pdt]] = Future {
     Products.all
+  }
+
+  /** Returns the product info based on the given id.
+    *
+    * @return A future value with the product as an Option
+    */
+  def getProductByID(id: Int): Future[Option[Pdt]] = Future {
+    Products.get(id)
   }
 
 }
