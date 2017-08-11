@@ -37,11 +37,10 @@ class ProductsController extends BaseController with FutureSupport {
           val maybeID: Option[Int] = Try(params.get("id").map(_.toInt)).getOrElse(None)
           maybeID match {
             case Some(id) =>
-              ProductsDAO.getProductByID(id) map { products =>
-                if (products.size > 0) {
-                  Ok(JsonResponse(PRODUCTS_RETRIEVED_SUCCESSFULLY._1, PRODUCTS_RETRIEVED_SUCCESSFULLY._2, products))
-                } else {
-                  Ok(JsonResponse(NO_PRODUCTS_FOUND._1, NO_PRODUCTS_FOUND._2))
+              ProductsDAO.getProductByID(id) map { maybeProduct =>
+                maybeProduct match {
+                  case Some(product) =>  Ok(JsonResponse(PRODUCTS_RETRIEVED_SUCCESSFULLY._1, PRODUCTS_RETRIEVED_SUCCESSFULLY._2, product))
+                  case None => Ok(JsonResponse(NO_PRODUCTS_FOUND._1, NO_PRODUCTS_FOUND._2))
                 }
               }
             case None =>
